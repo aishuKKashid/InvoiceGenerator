@@ -11,10 +11,6 @@ class InvoiceTest : StringSpec() {
             var actualFair : Double = invoiceGenerateor.calculate(rides)
             actualFair.shouldBeExactly(11.0)
         }
-//        "should return an error if one of the value is negative" {
-//            var fair : Double = invoiceGenerateor.calculate(-1.0, 0.0)
-//            fair.shouldBeExactly(0.0)
-//        }
         "should return 10 for distance 1 KM and time 0 min" {
             val ride = Ride(distance = 1.0, time= 0.0)
             var rides = listOf<Ride>(ride)
