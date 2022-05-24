@@ -6,16 +6,20 @@ class InvoiceTest : StringSpec() {
     init {
         val invoiceGenerateor : InvoiceGenerator = InvoiceGenerator()
         "should calculate fair with given distance and time" {
-            val ride = Ride(distance = 1.0, time= 1.0)
-            var rides = listOf<Ride>(ride)
-            var actualFair : Double = invoiceGenerateor.calculate(rides)
-            actualFair.shouldBeExactly(11.0)
+            val ride = Ride(distance = 0.0, time= 0.0)
+            var actualFair : Double = invoiceGenerateor.calculateRide(ride)
+            actualFair.shouldBeExactly(0.0)
         }
         "should return 10 for distance 1 KM and time 0 min" {
             val ride = Ride(distance = 1.0, time= 0.0)
-            var rides = listOf<Ride>(ride)
-            var actualFair : Double = invoiceGenerateor.calculate(rides)
+            var actualFair : Double = invoiceGenerateor.calculateRide(ride)
             actualFair.shouldBeExactly(10.0)
+        }
+
+        "should return 1.0 for distance 0 KM and time 1 min" {
+            val ride = Ride(distance = 0.0, time= 1.0)
+            var actualFair : Double = invoiceGenerateor.calculateRide(ride)
+            actualFair.shouldBeExactly(1.0)
         }
 
         "should calculate total fair for given 2 rides" {
@@ -33,7 +37,7 @@ class InvoiceTest : StringSpec() {
             val ride3 = Ride(distance = 0.0, time= 0.0)
             var rides = listOf<Ride>(ride1, ride2, ride3)
             var actualFair = invoiceGenerateor.calculate(rides)
-            val expectedFair = 22.0
+            val expectedFair = 20.0
             actualFair.shouldBeExactly(expectedFair)
         }
 
