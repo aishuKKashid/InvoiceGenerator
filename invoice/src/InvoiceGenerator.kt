@@ -1,15 +1,5 @@
-class InvoiceGenerator {
-
-
-//    fun calculateRide(ride : Ride) : Double {
-//        return ride.distance * FAIR_PER_KM + ride.time * FAIR_PER_MIN
-//    }
-    fun calculate(rides : List<Ride>): Double {
-        val total = rides.sumOf {
-            it.calculateFare()
-        }
-        return total
-    }
-
-
+class Invoice(rides: List<Ride>) {
+    val totalFare: Double = rides.sumOf { it.calculateFare() }
+    val totalRides: Int = rides.size
+    val averageCost: Double = if(rides.isEmpty() ) 0.0 else totalFare / totalRides
 }
