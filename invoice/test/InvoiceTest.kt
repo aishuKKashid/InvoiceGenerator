@@ -30,7 +30,7 @@ class InvoiceTest : StringSpec() {
         "should calculate total fair for given three rides" {
             val ride1 = Ride(distance = 1.0, time= 0.0)
             val ride2 = Ride(distance = 1.0, time= 0.0)
-            val ride3 = Ride(distance = 0.0, time= 2.0)
+            val ride3 = Ride(distance = 0.0, time= 0.0)
             var rides = listOf<Ride>(ride1, ride2, ride3)
             var actualFair = invoiceGenerateor.calculate(rides)
             val expectedFair = 22.0
