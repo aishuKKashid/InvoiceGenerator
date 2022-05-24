@@ -18,12 +18,31 @@ class InvoiceTest : StringSpec() {
             actualFair.shouldBeExactly(10.0)
         }
 
-        "should calculate total fair of all the given rides" {
-            val ride = Ride(distance = 1.0, time= 0.0)
-            var rides = listOf<Ride>(ride)
+        "should calculate total fair for given 2 rides" {
+            val ride1 = Ride(distance = 1.0, time= 0.0)
+            val ride2 = Ride(distance = 1.0, time= 0.0)
+            var rides = listOf<Ride>(ride1, ride2)
             var actualFair = invoiceGenerateor.calculate(rides)
-            val expectedFair = 10.0
+            val expectedFair = 20.0
+            actualFair.shouldBeExactly(expectedFair)
+        }
+
+        "should calculate total fair for given three rides" {
+            val ride1 = Ride(distance = 1.0, time= 0.0)
+            val ride2 = Ride(distance = 1.0, time= 0.0)
+            val ride3 = Ride(distance = 0.0, time= 2.0)
+            var rides = listOf<Ride>(ride1, ride2, ride3)
+            var actualFair = invoiceGenerateor.calculate(rides)
+            val expectedFair = 22.0
+            actualFair.shouldBeExactly(expectedFair)
+        }
+
+        "should return 0 if there are no rides" {
+            var rides = listOf<Ride>()
+            var actualFair = invoiceGenerateor.calculate(rides)
+            val expectedFair = 0.0
             actualFair.shouldBeExactly(expectedFair)
         }
     }
 }
+

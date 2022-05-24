@@ -4,8 +4,9 @@ class InvoiceGenerator {
         const val FAIR_PER_MIN = 1
     }
     fun calculate(rides : List<Ride>): Double {
-        val (distance, time) = rides[0]
-        return ((distance * FAIR_PER_KM) + (time * FAIR_PER_MIN))
-//        return 0.0
+        val total = rides.sumOf {
+            it.distance * FAIR_PER_KM + it.time * FAIR_PER_MIN
+        }
+        return total
     }
 }
